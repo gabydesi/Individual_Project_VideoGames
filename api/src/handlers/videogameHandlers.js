@@ -1,40 +1,41 @@
+const { default: axios } = require('axios')
 const  {
-  //getAllGames,
-  //getVideogamesByName,
+  getAllVideogamesController,
+  getGameByNameController,
+  getgameByIdController,
   createGameController
 } = require('../controllers/videoGamesController')
 
+
 const getVideogames = async(req,res)=>{
   const {name} = req.query
-
-  if(name) res.status(200).send(`NIY: Aquí veré los VG de nombre ${name}`)
-  else res.status(200).send(`NIY: Aquí veré todos los VG`)
-  // const {name} = req.query;
-  // try {
-  //   const results = name ? await getVideogamesByName(name) : await getAllGames()
-  //   results.length 
-  //   ? res.status(200).json(results.splice(0, 14))
-  //   : res.status(404).json({message: "Error"})
-  // } catch (error) {
-  //   res.status(400).json({error: error.message})
-  // }
+  const results = name ? await getGameByNameController(name) : await getAllVideogamesController()
+  res.status(200).json(results)
 }
-  
-const getVideogameById = (req,res)=>{
+
+
+
+const getVideogameById = async(req,res)=>{
   const {id} = req.params;
-  res.status(200).send(`NIY: Aquí veré el detalle de cada videojuego según el ID ${id}`)
+  //defino de donde proviene el ID si es de la api o de la db
+  const gameSource = isNaN(id) ? "DB" : "API"
+  try {
+    const gameId = await getgameByIdController(id, gameSource) 
+    res.status(200).json(gameId)
+    
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
 }  
 
 
 
 
 const createVideogame = async(req, res) => {
-  
   const {name, description, platforms, image, released, rating, genres} = req.body
-  
   try {
     const newGame = await createGameController(name, description, platforms, image, released, rating, genres)
-    res.status(201).json(newGame)
+    res.status(201).send(newGame)
   } catch (error) {
     res.status(400).json({error: error.message})
   }

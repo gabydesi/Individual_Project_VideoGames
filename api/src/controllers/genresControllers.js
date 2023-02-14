@@ -4,6 +4,7 @@ const {Genre} = require("../db")
 
 
 const getGamesGenres = async() => {
+    
     const api = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`)
     const api2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
     const api3 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
