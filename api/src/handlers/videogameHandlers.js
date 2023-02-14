@@ -1,7 +1,7 @@
 const  {
   //getAllGames,
   //getVideogamesByName,
-  createGame
+  createGameController
 } = require('../controllers/videoGamesController')
 
 const getVideogames = async(req,res)=>{
@@ -26,15 +26,26 @@ const getVideogameById = (req,res)=>{
 }  
 
 
-const createVideogame = (req, res) => {
-  const {name, description, platforms, image, released, rating} = req.body
-try {
-  const newGame = createGame(name, description, platforms, image, released, rating)
-  res.status(201).json(newGame)
-} catch (error) {
-  res.status(400).json({error: error.message})
+
+
+const createVideogame = async(req, res) => {
+  
+  const {name, description, platforms, image, released, rating, genres} = req.body
+  
+  try {
+    const newGame = await createGameController(name, description, platforms, image, released, rating, genres)
+    res.status(201).json(newGame)
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
 }
-}
+
+
+
+
+
+
+
 
 const modifyVideogame = (req, res) => {
   res.status(200).send("NIY: modificar videojuego")

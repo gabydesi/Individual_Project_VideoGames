@@ -1,5 +1,13 @@
-const getGenres = (req,res)=>{
-    res.status(200).send("NIY: Aquí veré los generos videojuegos")
+const {getGamesGenres} = require("../controllers/genresControllers")
+
+
+const getGenres = async(req,res)=>{
+  try {
+    const gamesGenres = await getGamesGenres()
+    res.status(200).send(gamesGenres)
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
   }
 
   module.exports = {

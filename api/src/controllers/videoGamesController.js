@@ -4,6 +4,24 @@ const {Videogame, Genre} = require('../db')
 const { API_KEY } = process.env
 
 
+
+const createGameController = async(name, description, platforms, image, released, rating, genres) => {
+    const newGameDB = await Videogame.create(name, description, platforms, image, released, rating, genres)
+    return(newGameDB)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const apiGames = async() => {
 //     let api = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`)
 //     let api2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
@@ -64,13 +82,10 @@ const { API_KEY } = process.env
 // }
 
 
-const createGame = async(name, description, platforms, image, released, rating) => {
-    let newGame = await Videogame.create({name, description, platforms, image, released, rating})
-    return newGame;
-}
+
 
 module.exports = {
     // getAllGames,
     // getVideogamesByName,
-    createGame,
+    createGameController
 }
