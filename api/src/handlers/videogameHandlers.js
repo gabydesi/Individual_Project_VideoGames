@@ -1,4 +1,4 @@
-const { default: axios } = require('axios')
+
 const  {
   getAllVideogamesController,
   getGameByNameController,
@@ -9,8 +9,13 @@ const  {
 
 const getVideogames = async(req,res)=>{
   const {name} = req.query
-  const results = name ? await getGameByNameController(name) : await getAllVideogamesController()
-  res.status(200).json(results)
+  try {
+    const results = name ? await getGameByNameController(name) : await getAllVideogamesController()
+    results.length ? res.status(200).json(results) : res.status(400).json("Error the name doesn't exist")
+  } catch (error) {
+    
+  }
+  
 }
 
 
@@ -30,12 +35,11 @@ const getVideogameById = async(req,res)=>{
 
 
 
-
 const createVideogame = async(req, res) => {
-  const {name, description, platforms, image, released, rating, genres} = req.body
+  const {name, platforms, image, released, rating, genres, description} = req.body
   try {
-    const newGame = await createGameController(name, description, platforms, image, released, rating, genres)
-    res.status(201).send(newGame)
+    await createGameController(name, platforms, image, released, rating, genres, description)
+    res.status(201).json("Game created successfully")
   } catch (error) {
     res.status(400).json({error: error.message})
   }

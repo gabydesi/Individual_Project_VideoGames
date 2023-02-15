@@ -9,12 +9,11 @@ const {
 
 const videogamesRouter = Router();
 
-
 videogamesRouter.get('/', getVideogames)
 
 videogamesRouter.get('/:id', getVideogameById)
 
-videogamesRouter.post('/create', createVideogame)
+videogamesRouter.post('/', createVideogame)
 
 videogamesRouter.put('/', modifyVideogame)
 

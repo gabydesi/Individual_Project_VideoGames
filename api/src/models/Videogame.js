@@ -7,36 +7,35 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey:true,
-      allowNull: false,
+      primaryKey:true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
     platforms: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull:false,
+      allowNull:false
     },
     image:{
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.TEXT,
+      allowNull: false
     },
     released: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
+      type: DataTypes.DATE,
+      allowNull: false
     },
     rating: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
     },
     createdDB:{
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      defaultValue: true
     },
   },{timestamps: false} );
 };

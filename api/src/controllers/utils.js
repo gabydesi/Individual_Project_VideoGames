@@ -1,5 +1,4 @@
 const axios = require('axios')
-const {Videogame, Genre} = require('../db')
 const { API_KEY } = process.env
 
 
@@ -51,6 +50,7 @@ const cleanGamesByID = async(id) => {
         }
     }
 }
+
 
 //función que limpia la info que necesito traer desde la api, por name
 const cleanGamesByName = async(name) => {
