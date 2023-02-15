@@ -26,10 +26,11 @@ const getGameByNameController = async (name) => {
 //         where: { name: { [Op.iLike]: `%${name}%` } },
 //         include: Genre,
 //       });
+//     const dbGamesFiltered = cleanVideoGamesDb(dbGames)  
 
 //     const apiGames = await cleanGamesByName(name)
 //     const apiGamesFiltered = apiGames.filter((game) => game.name.toLowerCase().includes(name.toLowerCase()))
-//     return [...apiGamesFiltered, ...dbGames] 
+//     return [...apiGamesFiltered, ...dbGamesFiltered] 
 // }
 
 
@@ -53,12 +54,23 @@ const createGameController = async(name, platforms, image, released, rating, gen
     })
 }
 
+const deleteGameByIdController = async(id) => {
+    let dataBaseGames = await Videogame.findAll({include: Genre})
+    let dataBaseGamesClean = cleanVideoGamesDb(dataBaseGames)
 
+    let deleteGame = dataBaseGamesClean.filter(game => game.createdDB === true && game.id === id)
+    deleteGame.length ?  await Videogame.destroy({
+        where: {id: id},
+        truncate: {cascade: true}
+    }) : "This videogame cannot be deleted" 
+    
+}
 
 
 module.exports = {
     getAllVideogamesController,
     getGameByNameController,
     getgameByIdController,
-    createGameController
+    createGameController,
+    deleteGameByIdController
 }

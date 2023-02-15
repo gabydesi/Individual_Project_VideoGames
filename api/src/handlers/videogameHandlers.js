@@ -3,7 +3,8 @@ const  {
   getAllVideogamesController,
   getGameByNameController,
   getgameByIdController,
-  createGameController
+  createGameController,
+  deleteGameByIdController
 } = require('../controllers/videoGamesController')
 
 
@@ -16,8 +17,6 @@ const getVideogames = async(req,res)=>{
     res.status(400).json({error: error.message})
   }
 }
-
-
 
 const getVideogameById = async(req,res)=>{
   const {id} = req.params;
@@ -32,8 +31,6 @@ const getVideogameById = async(req,res)=>{
   }
 }  
 
-
-
 const createVideogame = async(req, res) => {
   const {name, platforms, image, released, rating, genres, description} = req.body
   try {
@@ -44,9 +41,17 @@ const createVideogame = async(req, res) => {
   }
 }
 
-const deleteVideogame = (req, res) => {
-  res.status(200).send("NIY: borrar videojuego")
+const deleteVideogame = async(req, res) => {
+  const {id} = req.params;
+  try {
+    await deleteGameByIdController(id) 
+    res.status(200).json("Game deleted successfully")
+    
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
 }
+
 
 const modifyVideogame = (req, res) => {
   res.status(200).send("NIY: modificar videojuego")

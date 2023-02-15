@@ -17,6 +17,6 @@ videogamesRouter.post('/', createVideogame)
 
 videogamesRouter.put('/', modifyVideogame)
 
-videogamesRouter.delete('/', deleteVideogame)
+videogamesRouter.delete('/:id', deleteVideogame)
 
 module.exports = videogamesRouter;

@@ -98,7 +98,7 @@ const cleanGamesByName = async(name) => {
             image: element.background_image,
             released: element.released,
             rating: element.rating,
-            genres: element.genres.map((genre) => genre.name).toString(),
+            genres: element.genres.map((genre) => genre.name).toString() || "Adventure",
             createdDB: false
         }
     })
