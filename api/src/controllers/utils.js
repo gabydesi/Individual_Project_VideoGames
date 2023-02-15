@@ -1,20 +1,23 @@
 const axios = require('axios')
 const { API_KEY } = process.env
-
+const {Videogame, Genre} = require('../db')
 
 //función que me traiga la info de 100 videojuegos = 5 páginas
 const apiVideogames = async() => {
-    let api = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`)
-    let api2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
-    let api3 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
-    let api4 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=4`)
-    let api5 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=5`)
-
-    return [api.data.results, api2.data.results, api3.data.results, api4.data.results, api5.data.results].reduce((acc, val) => acc.concat(val), [])
+    
+    let api =  axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`)
+    let api2 = axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
+    let api3 = axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
+    let api4 = axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=4`)
+    let api5 = axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=5`)
+    
+    let results = await Promise.all([api, api2, api3, api4, api5]);
+        
+    return results.map(result=> result.data.results).reduce((acc, val) => acc.concat(val), [])
 }
 
 
-// //función que limpia la información y me trae sólo lo que necesito desde la api para todos los videogames
+// función que limpia la información y me trae sólo lo que necesito desde la api para todos los videogames
 const cleanVideoGamesApi = (arr) => {
     const clean = arr.map((element) => {
         return {
@@ -26,6 +29,23 @@ const cleanVideoGamesApi = (arr) => {
             rating: element.rating,
             genres: element.genres.map((genre) => genre.name).toString(),
             createdDB: false
+        }
+    })
+    return clean
+}
+
+//función que limpia la información y me trae sólo lo que necesito desde la db para todos los videogames
+const cleanVideoGamesDb = (arr) => {
+    const clean = arr.map((element) => {
+        return {
+            id: element.id,
+            name: element.name,
+            platforms: element.platforms,
+            image: element.image,
+            released: element.released,
+            rating: element.rating,
+            genres: element.genres.map((genre) => genre.name),
+            createdDB: true
         }
     })
     return clean
@@ -45,10 +65,26 @@ const cleanGamesByID = async(id) => {
             released: game.released,
             rating: game.rating,
             genres:game.genres.map((genre)=> genre.name).toString(),
-            description:game.description,
+            description:game.description_raw,
             createdDB: false
         }
     }
+}
+
+//función que limpia la info que necesito traer desde la DB, por ID
+const cleanGamesIDfromDB = async(id) => {
+    const dBgames = await Videogame.findOne({ where: { id }, include: Genre });
+        return {
+            id: dBgames.id,
+            name: dBgames.name,
+            platforms: dBgames.platforms,
+            image: dBgames.background_image,
+            released: dBgames.released,
+            rating: dBgames.rating,
+            genres:dBgames.genres.map((genre)=> genre.name),
+            description:dBgames.description,
+            createdDB: true
+        }
 }
 
 
@@ -70,9 +106,13 @@ const cleanGamesByName = async(name) => {
 }
 
 
+
 module.exports = {
     cleanGamesByID,
     apiVideogames,
     cleanVideoGamesApi,
-    cleanGamesByName
+    cleanGamesByName,
+    cleanVideoGamesDb,
+    cleanGamesIDfromDB,
+
 }
