@@ -8,9 +8,9 @@ const Navbar = () => {
 
             <Link to="/">Back to LandingPage provisional</Link>
 
-            <h3>Home</h3>
+            <Link>Home</Link>
             
-            <Link to="/form">Let's create a new Videogame</Link>
+            <Link to="/form">Create videogame</Link>
 
             <Searchbar/>
         </div>
