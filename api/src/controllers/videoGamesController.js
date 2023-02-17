@@ -10,7 +10,8 @@ const getAllVideogamesController = async() => {
     const apiGames = await apiVideogames()
     const apiGamesClean = cleanVideoGamesApi(apiGames)
 
-    return [...apiGamesClean, ...dataBaseGamesClean]
+    const results = [...apiGamesClean, ...dataBaseGamesClean]
+    return results
 }
 
 //filtrado por nombre sólo de los 100 videojuegos

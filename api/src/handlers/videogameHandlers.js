@@ -27,7 +27,7 @@ const getVideogameById = async(req,res)=>{
     res.status(200).json(gameId)
     
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({error: "The ID doesn't exist"})
   }
 }  
 
