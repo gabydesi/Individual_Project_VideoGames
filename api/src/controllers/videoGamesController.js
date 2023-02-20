@@ -55,16 +55,16 @@ const createGameController = async(name, platforms, image, released, rating, gen
     })
 }
 
-const deleteGameByIdController = async(id) => {
-    let dataBaseGames = await Videogame.findAll({include: Genre})
-    let dataBaseGamesClean = cleanVideoGamesDb(dataBaseGames)
 
-    let deleteGame = dataBaseGamesClean.filter(game => game.createdDB === true && game.id === id)
-    deleteGame.length ?  await Videogame.destroy({
-        where: {id: id},
-        truncate: {cascade: true}
-    }) : "This videogame cannot be deleted" 
-    
+const deleteGameByIdController = async(id) => {
+    const dataBaseGames = await Videogame.findAll({include: Genre})
+    const dataBaseGamesClean = cleanVideoGamesDb(dataBaseGames)
+
+    if(dataBaseGamesClean.length) {
+        await Videogame.destroy({
+            where: {id: id}
+          });
+    }
 }
 
 

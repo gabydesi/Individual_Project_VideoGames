@@ -12,7 +12,9 @@ const getVideogames = async(req,res)=>{
   const {name} = req.query
   try {
     const results = name ? await getGameByNameController(name) : await getAllVideogamesController()
-    results.length ? res.status(200).json(results) : res.status(404).json("Error the name doesn't exist")
+    
+    results.length ? res.status(200).json(results) 
+    : res.status(404).json("Error the name doesn't exist")
   } catch (error) {
     res.status(400).json({error: error.message})
   }
@@ -41,16 +43,19 @@ const createVideogame = async(req, res) => {
   }
 }
 
-const deleteVideogame = async(req, res) => {
-  const {id} = req.params;
+
+const deleteVideogame = async (req, res) => {
+  const { id } = req.params;
   try {
-    await deleteGameByIdController(id) 
-    res.status(200).json("Game deleted successfully")
-    
+    if (id.replace(/-/g, '') === id) {
+      return res.status(400).json({ error: 'This videogame cannot be deleted' });
+    }
+    await deleteGameByIdController(id);
+    res.status(200).json('Game deleted successfully');
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({ error: error.message });
   }
-}
+};
 
 
 const modifyVideogame = (req, res) => {
