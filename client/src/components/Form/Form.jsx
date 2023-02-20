@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux"
+import {getGameGenres} from "../../redux/actions"
 
 const Form = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getGameGenres())
+    },[])
+
+    const gameGenres = useSelector(state => state.genres)
+
 
     const [form, setForm] = useState({
         name:"",
@@ -15,7 +26,22 @@ const Form = () => {
 
     //añadir datos en el input
     const changeHandler = (event) => {
-        setForm({...form, [event.target.name]:event.target.value})
+        setForm({
+            ...form, 
+            [event.target.name]:event.target.value})
+    }
+
+    //opción de elección de géneros
+    const handlerSelect = (event) => {
+        setForm({
+            ...form,
+            genres:[form.genres, event.target.value]
+        })
+    }
+
+    //opción de elección de plataformas
+    const handlerCheck = (event) => {
+        
     }
 
 
@@ -61,8 +87,14 @@ const Form = () => {
                     </div>
                     
                     <div>
-                    <label>The genres types are:</label>
-                    <select>Genres</select>
+                    <label>The genres types are: </label>
+                    <select name="genres" onChange={(event)=> handlerSelect(event)}>
+                        {gameGenres.map((genr)=>{
+                            return(
+                                <option key={genr.id} value={genr.name}>{genr.name}</option>
+                            )
+                        })}
+                    </select>
                     </div>
 
                     <div>
