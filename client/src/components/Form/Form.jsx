@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import {getGameGenres} from "../../redux/actions"
+import axios from "axios";
 
 const Form = () => {
 
@@ -9,10 +10,11 @@ const Form = () => {
 
     useEffect(()=>{
         dispatch(getGameGenres())
-    },[])
+    },[dispatch])
 
     const gameGenres = useSelector(state => state.genres)
 
+    const gamePlatforms = ['PC', 'Nintendo', 'Nintendo switch', 'Xbox Series', 'PlayStation 2', 'PlayStation 3', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox360']
 
     const [form, setForm] = useState({
         name:"",
@@ -23,6 +25,8 @@ const Form = () => {
         platforms:[],
         genres:[],
     })
+
+
 
     //añadir datos en el input
     const changeHandler = (event) => {
@@ -39,10 +43,25 @@ const Form = () => {
         })
     }
 
-    //opción de elección de plataformas
+    //opción de elección de plataformas, no estoy segura
     const handlerCheck = (event) => {
-        
+
+        const arr = form[event.target.name];
+
+        setForm({
+            ...form,
+            platforms: arr.concat(event.target.value)
+            
+        })
     }
+
+    //cargar datos en la DB
+    const handlerSubmit = (event) => {
+        event.preventDefault()
+        axios.post('http://localhost:3001/videogames/', form)
+        .then(alert("Videogame created successfully, return home to see it!"))
+        
+        }
 
 
     return (
@@ -51,7 +70,7 @@ const Form = () => {
 
             <h2>Let's create a new Videogame for our database:</h2>
 
-            <form>
+            <form onSubmit={handlerSubmit}>
                 <div>
                     <div>
                     <label>Add a name: </label>
@@ -83,7 +102,12 @@ const Form = () => {
 
                     <div>
                     <label>On which platforms can be played: </label>
-                    <input type="checkbox"/>
+                    {gamePlatforms.map((plat) => (
+                        <div key={plat}>
+										<label name={plat}>{plat}</label>
+										<input type='checkbox' name='platforms' value={plat} onChange={handlerCheck}></input>
+									</div>
+								))}
                     </div>
                     
                     <div>

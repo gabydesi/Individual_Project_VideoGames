@@ -3,6 +3,8 @@ import axios from "axios"
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES"
 export const GET_GAME_DETAIL = "GET_GAME_DETAIL"
 export const GET_GAME_GENRES = "GET_GAME_GENRES"
+export const SEARCH_GAME = "SEARCH_GAME"
+
 
 export function getVideogames(){
     return async function(dispatch){
@@ -29,6 +31,24 @@ export function getGameDetail(id){
     }
 }
 
+export function searchGame(name){
+    return async(dispatch)=>{
+        try {
+            let vgName = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            if(!vgName) throw Error
+            return dispatch({
+                type: SEARCH_GAME,
+                payload: vgName.data //es lo q devuelve la ruta una vez q le asigno algo por name
+            })
+        } catch (error) {
+            dispatch({
+                type: SEARCH_GAME,
+                payload: "404"
+            })
+        }
+    }
+}
+
 export function getGameGenres(){
     return function(dispatch){
         axios.get("http://localhost:3001/genres").then((res) =>
@@ -38,4 +58,6 @@ export function getGameGenres(){
         }))
     }
 }
+
+
 

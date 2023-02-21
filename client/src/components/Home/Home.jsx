@@ -10,6 +10,8 @@ const Home = () => {
 
     const dispatch = useDispatch()
 
+    //paginado
+
     useEffect(()=>{
         dispatch(getVideogames())
     },[dispatch])
@@ -18,8 +20,6 @@ const Home = () => {
         <div>
 
             <Navbar/>
-
-            <h1>This will be the Cards view</h1>
 
             <CardsContainer/>
 
