@@ -78,7 +78,7 @@ const cleanGamesIDfromDB = async(id) => {
             id: dBgames.id,
             name: dBgames.name,
             platforms: dBgames.platforms,
-            image: dBgames.background_image,
+            image: dBgames.image,
             released: dBgames.released,
             rating: dBgames.rating,
             genres:dBgames.genres.map((genre)=> genre.name),
@@ -104,6 +104,7 @@ const cleanGamesByName = async(name) => {
     })
    return apiGames
 }
+
 
 
 

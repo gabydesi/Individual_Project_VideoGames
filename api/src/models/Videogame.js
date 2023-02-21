@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     released: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     rating: {
