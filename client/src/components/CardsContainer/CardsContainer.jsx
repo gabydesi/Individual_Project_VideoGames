@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Card from "../Card/Card"
 import Paginate from "../Paginate/Paginate"
 import style from "./CardsContainer.module.css"
-import {getVideogames, filterByGenres, getGameGenres, filterByOrigin} from "../../redux/actions"
+import {getVideogames, filterByGenres, getGameGenres, filterByOrigin, alphabeticalOrder, ratingOrder} from "../../redux/actions"
 import { useEffect, useState } from "react"
 
 const CardsContainer = () => {
@@ -11,6 +11,7 @@ const CardsContainer = () => {
     const videogames = useSelector(state=>state.videogames)
     const genres = useSelector((state)=> state.genres)
     
+    
 
 //paginado
 const [page, setPage] = useState(1);
@@ -18,6 +19,9 @@ const [page, setPage] = useState(1);
   const indexOfLastGame = page * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
   const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame);
+ 
+
+  const [order, setOrder] = useState([]);
   
  
   const pagination = (pageNumber) => {
@@ -39,6 +43,22 @@ const handlerFilterByGenre = (event) => {
 const handlerFilterByOrigin = (event) => {
     dispatch(filterByOrigin(event.target.value))
 }
+
+//ordenar alfabeticamente
+const handlerOrderAlphabetically = (event) => {
+    event.preventDefault()
+    dispatch(alphabeticalOrder(event.target.value))
+    setPage(1)
+    setOrder(`order${event.target.value}`);
+}
+
+//ordenar por rating
+const handlerOrderByRating = (event) => {
+    event.preventDefault()
+    dispatch(ratingOrder(event.target.value))
+}
+
+
 
 
     return ( 
@@ -64,6 +84,22 @@ const handlerFilterByOrigin = (event) => {
                 </select>
             </div>
 
+            <div>
+                <h6>Order videogames alphabetically: </h6>
+                <select onChange={(event) => handlerOrderAlphabetically(event)}>
+                    <option value="asc">A - Z</option>
+                    <option value="desc">Z - A</option>
+                </select>
+            </div>
+
+            <div>
+                <h6>Order videogames by rating: </h6>
+                <select onChange={(event) => handlerOrderByRating(event)}>
+                    <option value="asc">1 - 5</option>
+                    <option value="desc">5 - 1</option>
+                </select>
+            </div>
+
             <div className={style.container}>
                 {
                     currentGames === "404" ? (
@@ -71,7 +107,7 @@ const handlerFilterByOrigin = (event) => {
                             <h1>Videogame not found!</h1>
                         </div>
                     ) : 
-            currentGames.map(game =>{
+                currentGames.map(game =>{
                 return <Card
                 key={game.id}
                 image={game.image}

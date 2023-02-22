@@ -1,4 +1,4 @@
-import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES, FILTER_BY_ORIGIN} from './actions'
+import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES, FILTER_BY_ORIGIN, ALPHABETICAL_ORDER, RATING_ORDER,} from './actions'
 
 const initialState = {
     videogames: [],
@@ -52,7 +52,44 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 videogames: originFilter
             }
-       
+        case ALPHABETICAL_ORDER:
+            let sortedGames = state.videogames
+            if(action.payload === "asc"){
+                sortedGames = sortedGames.sort((a, b) => {
+                    if(a.name > b.name){return 1}
+                    if(b.name > a.name){return -1}
+                    return 0
+                })
+            }else{
+                sortedGames = sortedGames.sort((a, b) => {
+                    if(a.name > b.name){return -1}
+                    if(b.name > a.name){return 1}
+                    return 0
+                })
+            }
+            return{
+                ...state,
+                videogames: sortedGames
+            }
+        case RATING_ORDER: 
+        const sortedRating = action.payload === 'asc' ?
+        [...state.allgames].sort(function (a, b) {
+            if(a.rating === null) { return 0 }
+            if (a.rating < b.rating) { return 1 }
+            if (b.rating < a.rating) { return -1 }
+            return 0;
+        }) :
+        [...state.allgames].sort(function (a, b) {
+            if(a.rating === null) { return 0 }
+            if (a.rating < b.rating) { return -1; }
+            if (b.rating < a.rating) { return 1; }
+            return 0;
+        })
+            return{
+                ...state,
+                videogames: sortedRating
+            }
+        
         
         default:
             return {...state}

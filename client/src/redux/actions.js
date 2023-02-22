@@ -6,6 +6,9 @@ export const GET_GAME_GENRES = "GET_GAME_GENRES"
 export const SEARCH_GAME = "SEARCH_GAME"
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES"
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN"
+export const ALPHABETICAL_ORDER = "ALPHABETICAL_ORDER"
+export const RATING_ORDER = "RATING_ORDER"
+
 
 
 export function getVideogames(){
@@ -17,8 +20,7 @@ export function getVideogames(){
                 payload: gamesData.data
             })
         } catch (error) {
-            dispatch({ type: GET_VIDEOGAMES,
-                payload: "Error 404"})
+            console.log(error.message)
         }
     }
 }
@@ -79,8 +81,21 @@ export function filterByOrigin(payload){
     }
 }
 
-
-//ordenar tanto ascendentemente como descendentemente por orden alfabético y por rating
-
+//ordenar tanto ascendentemente como descendentemente por orden alfabético
+export function alphabeticalOrder(payload){
+    return{
+        type:ALPHABETICAL_ORDER,
+        payload
+    }
+}
 
 //ordenar tanto ascendentemente como descendentemente por rating
+export function ratingOrder(payload){
+    return{
+        type: RATING_ORDER,
+        payload
+    }
+}
+
+
+

@@ -8,7 +8,7 @@ const Navbar = () => {
 
             <Link to="/">Back to LandingPage provisional</Link>
 
-            <Link>Home</Link>
+            <Link to="/home">Home</Link>
             
             <Link to="/form">Create videogame</Link>
 
