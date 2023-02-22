@@ -26,8 +26,6 @@ const Form = () => {
         genres:[],
     })
 
-
-
     //añadir datos en el input
     const changeHandler = (event) => {
         setForm({
@@ -45,13 +43,10 @@ const Form = () => {
 
     //opción de elección de plataformas, no estoy segura
     const handlerCheck = (event) => {
-
         const arr = form[event.target.name];
-
         setForm({
             ...form,
             platforms: arr.concat(event.target.value)
-            
         })
     }
 
@@ -60,7 +55,6 @@ const Form = () => {
         event.preventDefault()
         axios.post('http://localhost:3001/videogames/', form)
         .then(alert("Videogame created successfully, return home to see it!"))
-        
         }
 
 

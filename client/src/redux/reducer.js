@@ -1,4 +1,4 @@
-import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME} from './actions'
+import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES} from './actions'
 
 const initialState = {
     videogames: [],
@@ -32,6 +32,16 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 videogames:action.payload
+            }
+        case FILTER_BY_GENRES:
+            let allGamesGenres = state.allgames
+
+            if(action.payload !== "All") {
+                allGamesGenres = allGamesGenres.filter((genr)=> genr.genres.includes(action.payload))
+            }
+            return{
+                ...state,
+                videogames: allGamesGenres
             }
        
         

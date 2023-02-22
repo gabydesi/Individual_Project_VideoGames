@@ -4,6 +4,7 @@ export const GET_VIDEOGAMES = "GET_VIDEOGAMES"
 export const GET_GAME_DETAIL = "GET_GAME_DETAIL"
 export const GET_GAME_GENRES = "GET_GAME_GENRES"
 export const SEARCH_GAME = "SEARCH_GAME"
+export const FILTER_BY_GENRES = "FILTER_BY_GENRES"
 
 
 export function getVideogames(){
@@ -59,5 +60,16 @@ export function getGameGenres(){
     }
 }
 
+//filtrado y ordenamiento
+//filtrar por género
+export function filterByGenres(){
+    return{
+        type: FILTER_BY_GENRES,
+        
+    }
+}
+
+
+//origen es de la API o de la base de datos
 
 
