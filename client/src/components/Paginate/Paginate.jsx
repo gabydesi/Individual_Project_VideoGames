@@ -8,6 +8,8 @@ const Paginate = ({ gamesPerPage, videogames, pagination, currentPage }) => {
         pageNumbers.push(i)
     }
 
+    
+
     function handlerArrows(event){
         event.target.value === "prev" && currentPage !== 1 && pagination(currentPage - 1)
         event.target.value === "next" && currentPage !== Math.ceil((videogames / gamesPerPage)) && pagination(currentPage + 1)

@@ -5,6 +5,7 @@ export const GET_GAME_DETAIL = "GET_GAME_DETAIL"
 export const GET_GAME_GENRES = "GET_GAME_GENRES"
 export const SEARCH_GAME = "SEARCH_GAME"
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES"
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN"
 
 
 export function getVideogames(){
@@ -61,15 +62,25 @@ export function getGameGenres(){
 }
 
 //filtrado y ordenamiento
+
 //filtrar por género
-export function filterByGenres(){
+export function filterByGenres(payload){
     return{
         type: FILTER_BY_GENRES,
-        
+        payload,
+    }
+}
+
+//filtrar por origen es de la API o de la base de datos
+export function filterByOrigin(payload){
+    return{
+        type:FILTER_BY_ORIGIN,
+        payload
     }
 }
 
 
-//origen es de la API o de la base de datos
+//ordenar tanto ascendentemente como descendentemente por orden alfabético y por rating
 
 
+//ordenar tanto ascendentemente como descendentemente por rating

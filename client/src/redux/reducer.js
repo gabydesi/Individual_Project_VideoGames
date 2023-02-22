@@ -1,4 +1,4 @@
-import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES} from './actions'
+import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES, FILTER_BY_ORIGIN} from './actions'
 
 const initialState = {
     videogames: [],
@@ -42,6 +42,15 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 videogames: allGamesGenres
+            }
+        case FILTER_BY_ORIGIN:
+            let gamesOrigin = state.allgames
+            let originFilter = action.payload === "createdDB" ? 
+            gamesOrigin.filter(element => element.createdDB === true) :
+            gamesOrigin.filter(element => !element.createdDB)
+            return{
+                ...state,
+                videogames: originFilter
             }
        
         

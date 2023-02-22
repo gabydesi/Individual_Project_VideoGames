@@ -35,13 +35,15 @@ const Form = () => {
 
     //opción de elección de géneros
     const handlerSelect = (event) => {
-        setForm({
+        if (!form.genres.includes(event.target.value)) {
+          setForm({
             ...form,
-            genres:[form.genres, event.target.value]
-        })
-    }
+            genres: [...form.genres, event.target.value],
+          });
+        }
+      };
 
-    //opción de elección de plataformas, no estoy segura
+    //opción de elección de plataformas
     const handlerCheck = (event) => {
         const arr = form[event.target.name];
         setForm({
@@ -106,7 +108,7 @@ const Form = () => {
                     
                     <div>
                     <label>The genres types are: </label>
-                    <select name="genres" onChange={(event)=> handlerSelect(event)}>
+                    <select name="genres" onChange={handlerSelect} id="" value={form.genres.join("")}>
                         {gameGenres.map((genr)=>{
                             return(
                                 <option key={genr.id} value={genr.name}>{genr.name}</option>
