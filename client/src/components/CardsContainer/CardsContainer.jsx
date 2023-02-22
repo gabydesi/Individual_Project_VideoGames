@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Card from "../Card/Card"
 import Paginate from "../Paginate/Paginate"
 import style from "./CardsContainer.module.css"
-import {getVideogames, filterByGenres, getGameGenres, filterByOrigin, alphabeticalOrder, ratingOrder} from "../../redux/actions"
+import {getVideogames, filterByGenres, getGameGenres, filterByOrigin, alphabeticalOrder, ratingOrder, resetAll} from "../../redux/actions"
 import { useEffect, useState } from "react"
 
 const CardsContainer = () => {
@@ -10,8 +10,7 @@ const CardsContainer = () => {
     const dispatch = useDispatch()
     const videogames = useSelector(state=>state.videogames)
     const genres = useSelector((state)=> state.genres)
-    
-    
+
 
 //paginado
 const [page, setPage] = useState(1);
@@ -29,6 +28,7 @@ const [page, setPage] = useState(1);
   };
 
     useEffect(()=>{
+        dispatch(resetAll())
         dispatch(getVideogames())
         dispatch(getGameGenres())
     },[dispatch])

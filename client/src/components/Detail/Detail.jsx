@@ -12,9 +12,11 @@ const Detail = () => {
 
     useEffect(()=>{
         dispatch(getGameDetail(id))
+        
     },[dispatch, id])
 
     const detail = useSelector((state) => state.detail)
+    dispatch({type: "reset"})
     if(!detail.id) {
         return(
             <div>

@@ -1,4 +1,4 @@
-import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES, FILTER_BY_ORIGIN, ALPHABETICAL_ORDER, RATING_ORDER,} from './actions'
+import {GET_VIDEOGAMES, GET_GAME_DETAIL, GET_GAME_GENRES, SEARCH_GAME, FILTER_BY_GENRES, FILTER_BY_ORIGIN, ALPHABETICAL_ORDER, RATING_ORDER, RESET} from './actions'
 
 const initialState = {
     videogames: [],
@@ -23,6 +23,14 @@ const rootReducer = (state = initialState, action) => {
                 allgames: action.payload,
                 detail: action.payload,
             }
+        case RESET:
+            return {
+                ...state,
+                videogames: [],
+                allgames:[],
+                detail: {},
+                genres:[]
+      }
         case GET_GAME_GENRES:
             return{
                 ...state,

@@ -8,6 +8,7 @@ export const FILTER_BY_GENRES = "FILTER_BY_GENRES"
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN"
 export const ALPHABETICAL_ORDER = "ALPHABETICAL_ORDER"
 export const RATING_ORDER = "RATING_ORDER"
+export const RESET = "RESET"
 
 
 
@@ -62,6 +63,14 @@ export function getGameGenres(){
         }))
     }
 }
+
+export const resetAll = () => {
+    return (dispatch) => {
+      dispatch({
+        type: RESET,
+      });
+    };
+  };
 
 //filtrado y ordenamiento
 

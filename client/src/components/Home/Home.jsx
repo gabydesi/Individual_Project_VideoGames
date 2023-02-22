@@ -3,16 +3,16 @@ import CardsContainer from "../CardsContainer/CardsContainer";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {getVideogames} from "../../redux/actions"
+import {getVideogames, } from "../../redux/actions"
 
 
 const Home = () => {
 
     const dispatch = useDispatch()
 
-    //paginado
 
     useEffect(()=>{
+        
         dispatch(getVideogames())
     },[dispatch])
     
