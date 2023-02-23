@@ -16,7 +16,9 @@ const Detail = () => {
     },[dispatch, id])
 
     const detail = useSelector((state) => state.detail)
+   
     dispatch({type: "reset"})
+    
     if(!detail.id) {
         return(
             <div>
@@ -26,15 +28,15 @@ const Detail = () => {
     }
 
         return (
-            <div>
+            <div className={style.detail_back}>
             <Link to="/home">Let's back Home</Link>
             
             <h1>{detail.name}</h1>
             <img src={detail.image} alt="" className={style.imageSize}/>
-            <h3>Genres: {detail.genres}</h3>
+            <h3>Genres: {detail.genres.join(", ")}</h3>
             <h3>Launch date: {detail.released}</h3>
             <h3>Rating: {detail.rating}</h3>
-            <h3>Platforms where you can play: {detail.platforms}</h3>
+            <h3>Platforms where you can play: {detail.platforms.join(", ")}</h3>
             <h3>About this game: {detail.description}</h3>
             
         </div>

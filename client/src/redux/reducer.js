@@ -15,7 +15,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 videogames: action.payload,
                 allgames: action.payload,
-               
             }
         case GET_GAME_DETAIL:
             return{
@@ -26,10 +25,7 @@ const rootReducer = (state = initialState, action) => {
         case RESET:
             return {
                 ...state,
-                videogames: [],
-                allgames:[],
                 detail: {},
-                genres:[]
       }
         case GET_GAME_GENRES:
             return{
@@ -97,6 +93,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 videogames: sortedRating
             }
+    
         
         
         default:

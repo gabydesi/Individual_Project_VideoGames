@@ -5,6 +5,7 @@ import style from "./CardsContainer.module.css"
 import {getVideogames, filterByGenres, getGameGenres, filterByOrigin, alphabeticalOrder, ratingOrder, resetAll} from "../../redux/actions"
 import { useEffect, useState } from "react"
 
+
 const CardsContainer = () => {
 
     const dispatch = useDispatch()
@@ -33,6 +34,7 @@ const [page, setPage] = useState(1);
         dispatch(getGameGenres())
     },[dispatch])
 
+
 //filtrar por generos
 const handlerFilterByGenre = (event) => {
     event.preventDefault()
@@ -57,7 +59,6 @@ const handlerOrderByRating = (event) => {
     event.preventDefault()
     dispatch(ratingOrder(event.target.value))
 }
-
 
 
 
@@ -102,12 +103,13 @@ const handlerOrderByRating = (event) => {
 
             <div className={style.container}>
                 {
+                    
                     currentGames === "404" ? (
                         <div>
                             <h1>Videogame not found!</h1>
                         </div>
                     ) : 
-                currentGames.map(game =>{
+                currentGames?.map(game =>{
                 return <Card
                 key={game.id}
                 image={game.image}
@@ -116,6 +118,7 @@ const handlerOrderByRating = (event) => {
                 id={game.id}
                 />
             })
+          
         }
             </div>
 

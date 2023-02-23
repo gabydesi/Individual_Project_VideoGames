@@ -11,7 +11,6 @@ export const RATING_ORDER = "RATING_ORDER"
 export const RESET = "RESET"
 
 
-
 export function getVideogames(){
     return async function(dispatch){
         try {
@@ -64,13 +63,27 @@ export function getGameGenres(){
     }
 }
 
-export const resetAll = () => {
+
+//limpiar el state
+export function resetAll () {
     return (dispatch) => {
       dispatch({
         type: RESET,
       });
     };
   };
+
+  export function deleteVideogame(id){
+    return async function(){
+        try {
+            const gamesData = await axios.delete(`http://localhost:3001/videogames/${id}`)
+            alert(gamesData.data.message)
+           
+        } catch (error) {
+            alert("This game cannot be deleted")
+        }
+    }
+  }
 
 //filtrado y ordenamiento
 

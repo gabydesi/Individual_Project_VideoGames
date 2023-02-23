@@ -1,3 +1,9 @@
+.detail_back{
+  background-image: url("../images/backgroundImage.jpeg");
+  background-size: cover;
+}
+
+
 .imageSize{
     width: 230px;
     height: 230px;

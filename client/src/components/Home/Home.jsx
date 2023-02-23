@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {getVideogames, } from "../../redux/actions"
+import style from './Home.modules.css'
 
 
 const Home = () => {
@@ -12,12 +13,11 @@ const Home = () => {
 
 
     useEffect(()=>{
-        
         dispatch(getVideogames())
     },[dispatch])
     
     return (
-        <div>
+        <div className={style.home_back}>
 
             <Navbar/>
 
