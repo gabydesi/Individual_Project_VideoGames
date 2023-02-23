@@ -51,7 +51,7 @@ const deleteVideogame = async (req, res) => {
       return res.status(400).json({ error: 'This videogame cannot be deleted' });
     }
     await deleteGameByIdController(id);
-    res.status(200).json('Game deleted successfully');
+    res.status(200).json({ message: 'Game deleted successfully'});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

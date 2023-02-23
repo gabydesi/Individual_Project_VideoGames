@@ -27,7 +27,7 @@ const cleanVideoGamesApi = (arr) => {
             image: element.background_image,
             released: element.released,
             rating: element.rating,
-            genres: element.genres.map((genre) => genre.name).toString(),
+            genres: element.genres.map((genre) => genre.name),
             createdDB: false
         }
     })
@@ -64,7 +64,7 @@ const cleanGamesByID = async(id) => {
             image: game.background_image,
             released: game.released,
             rating: game.rating,
-            genres:game.genres.map((genre)=> genre.name).toString(),
+            genres:game.genres.map((genre)=> genre.name),
             description:game.description_raw,
             createdDB: false
         }
@@ -98,7 +98,7 @@ const cleanGamesByName = async(name) => {
             image: element.background_image,
             released: element.released,
             rating: element.rating,
-            genres: element.genres.map((genre) => genre.name).toString() || "Adventure",
+            genres: element.genres.map((genre) => genre.name) || "Adventure",
             createdDB: false
         }
     })
