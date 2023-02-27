@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getGameDetail} from "../../redux/actions"
-import style from './Detail.modules.css'
+import style from './Detail.module.css'
 
 const Detail = () => {
 

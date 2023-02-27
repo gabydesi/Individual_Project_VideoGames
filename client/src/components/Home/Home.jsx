@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {getVideogames, } from "../../redux/actions"
-import style from './Home.modules.css'
+import style from './Home.module.css'
 
 
 const Home = () => {

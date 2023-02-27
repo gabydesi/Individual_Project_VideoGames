@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
+import style from "./LandingPage.module.css"
+import landingVideo from "./landingVideo.mp4"
+import startButton from "../images/startButton.png"
 
 const LandingPage = () => {
     return (
         <div>
-            <h2>This is going to be the landing page</h2>
-            <Link to="/home">Let's GO HOME</Link>
+            
+            <video src={landingVideo}autoplay="true" muted="true" loop="true" 
+             className={style.landingVideo}>
+            </video>
+
+            <Link to="/home">
+                <img className={style.start} src={startButton} alt="" />
+            </Link>
         </div>
     )
 }
