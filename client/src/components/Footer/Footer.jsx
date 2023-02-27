@@ -1,7 +1,10 @@
+import style from './Footer.module.css'
+
+
 const Footer = () => {
     return(
-        <div>
-            <h6>Henry Individual Project made by Gabriela Acevedo</h6>
+        <div className={style.content}>
+            <h6 >Made by Gabriela Acevedo</h6>
         </div>
     )
 }

@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 import style from "./Navbar.module.css"
+import logotwo from "../images/logotwo.png"
 
 const Navbar = () => {
     return (
         <div className={style.mainContainer}>
 
-            <Link to="/">Back to LandingPage provisional</Link>
+            <Link to="/">
+                <img className={style.logo} src={logotwo} alt=""/>
+            </Link>
 
-            <Link to="/home">Home</Link>
+            <Link className={style.button} to="/home">Home</Link>
             
-            <Link to="/form">Create videogame</Link>
+            <Link className={style.button} to="/form">Create videogame</Link>
 
             <Searchbar/>
         </div>

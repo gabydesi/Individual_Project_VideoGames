@@ -2,15 +2,33 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 250px;
-    height: 400px;
+    width: 280px;
+    height: 350px;
     box-shadow: 5px 5px 5px #e830ce;
     margin-bottom: 25px;
     margin-left: 10px;
     position: relative;
     border-radius: 15px;
+    text-decoration: none;
     
-    
-
 }
 
+.card_img{
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    
+}
+
+.card_img img{
+    border-radius: 25px;
+}
+
+.trashCan{
+    position: relative;
+    right: -100px;
+    width: 10px;
+    height: 20px;
+    text-decoration: none;
+    color: #e830ce;
+}

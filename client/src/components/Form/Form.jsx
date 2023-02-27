@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux"
 import {getGameGenres} from "../../redux/actions"
 import axios from "axios";
 import validation from "./validation";
+import style from "./Form.module.css"
+import logotwo from "../images/logotwo.png"
 
 const Form = () => {
 
@@ -65,16 +67,20 @@ const Form = () => {
 
 
     return (
-        <div>
-            <Link to="/home">Let's back Home</Link>
-
+        <div className={style.form_back}>
+           
             <h2>Let's create a new Videogame for our database:</h2>
 
-            <form onSubmit={handlerSubmit}>
+            <div>
+                        <img src={logotwo} alt="" className={style.logo} />
+                    </div>
+            
+            
+            <form className={style.container} onSubmit={handlerSubmit}>
                 <div>
                     <div>
-                    <label>Add a name: </label>
-                    <input type="text" name="name" value={form.name} onChange={changeHandler} minlength="5" maxlength="20" required/>
+                    <label >Add a name: </label>
+                    <input  className={style.form_input} type="text" name="name" value={form.name} onChange={changeHandler} minlength="5" maxlength="20" required/>
                     {errors.name ? <span>{errors.name}</span> : null}
                     </div>
 
@@ -131,8 +137,16 @@ const Form = () => {
                     <button 
                     type="submit"
                     disabled={!form.name || !form.released || !form.rating || !form.description || !form.platforms || !form.genres}
-                    >CREATE</button>
+                    
+                    >Create</button>
                     </div>
+
+                    <div>
+            <br />
+            <br />
+            <Link className={style.button} to="/home">Back Home</Link>
+            </div>
+                    
                     
                    
                 </div>

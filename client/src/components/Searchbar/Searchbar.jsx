@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {searchGame} from "../../redux/actions"
 import { useDispatch } from "react-redux";
+import style from "./Searchbar.module.css"
 
 
 //función para buscar los juegos por nombre
@@ -22,9 +23,9 @@ const Searchbar = () => {
     return (
         <div>
             
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Search videogames by name..." onChange={handleChange} value={gameName}/>
-                    <input type="submit" value="FIND"/>
+                <form className={style.searchBarObject} onSubmit={handleSubmit}>
+                    <input className={style.input} type="text" placeholder="Search videogames by name..." size="30" onChange={handleChange} value={gameName}/>
+                    <input className={style.button} type="submit" value="Search"/>
                 </form>
             
         </div>
