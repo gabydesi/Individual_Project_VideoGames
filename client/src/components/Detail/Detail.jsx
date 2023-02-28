@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getGameDetail} from "../../redux/actions"
 import style from './Detail.module.css'
-import logotwo from "../images/logotwo.png" 
+
+import Navbartwo from "../Navbartwo/Navbartwo"
 
 
 const Detail = () => {
@@ -32,8 +33,9 @@ const Detail = () => {
         return (
             <div className={style.detail_back}>
 
+            <Navbartwo/>
             
-            <div>
+            <div className={style.container}>
             <h1>{detail.name}</h1>
             <img src={detail.image} alt="" className={style.imageSize}/>
             <h3>Genres: {detail.genres.join(", ")}</h3>
@@ -42,18 +44,11 @@ const Detail = () => {
             <h4>Platforms where you can play this game:</h4>
             <p>{detail.platforms.join(", ")}</p>
             <h4>About this game: </h4>
-            <p>{detail.description}</p>
+            <p className={style.description}>{detail.description}</p>
             </div>
 
-            <div>
-            <br/>
-            <br/>
-            <Link className={style.button} to="/home">Back Home</Link>
-            </div>
 
-            <div>
-                <img className={style.logo} src={logotwo} alt=""/>
-            </div>
+            
 
             
             

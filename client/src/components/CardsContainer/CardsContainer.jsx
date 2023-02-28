@@ -4,6 +4,7 @@ import Paginate from "../Paginate/Paginate"
 import style from "./CardsContainer.module.css"
 import {getVideogames, filterByGenres, getGameGenres, filterByOrigin, alphabeticalOrder, ratingOrder, resetAll} from "../../redux/actions"
 import { useEffect, useState } from "react"
+import notFound from "../images/notFound.mp4"
 
 
 
@@ -67,17 +68,19 @@ const handlerOrderByRating = (event) => {
 
         <div className={style.container}>
 
-            <div>
+        <div className={style.filters}>
+
+            <div className={style.filter}>
                 <h6>Find videogames by genres: </h6>
                 <select onChange={(event)=> handlerFilterByGenre(event)}>
                     <option value="All">All genres</option>
                     {genres?.map((genr)=> (
                         <option value={genr.name} key={genr.id}>{genr.name}</option>
-                    ))}
+                        ))}
                 </select>
             </div>
 
-            <div>
+            <div className={style.filter}>
                 <h6>Find videogames by origin: </h6>
                 <select onChange={(event)=>handlerFilterByOrigin(event)}>
                     <option value="All">All sources</option>
@@ -86,7 +89,7 @@ const handlerOrderByRating = (event) => {
                 </select>
             </div>
 
-            <div>
+            <div className={style.filter}>
                 <h6>Order videogames alphabetically: </h6>
                 <select onChange={(event) => handlerOrderAlphabetically(event)}>
                     <option value="asc">A - Z</option>
@@ -94,7 +97,7 @@ const handlerOrderByRating = (event) => {
                 </select>
             </div>
 
-            <div>
+            <div className={style.filter}>
                 <h6>Order videogames by rating: </h6>
                 <select onChange={(event) => handlerOrderByRating(event)}>
                     <option value="asc">1 - 5</option>
@@ -102,13 +105,15 @@ const handlerOrderByRating = (event) => {
                 </select>
             </div>
 
+            </div>
+
             <div className={style.container}>
                 {
                     
                     currentGames === "404" ? (
                         <div className={style.notFound}>
-                            {/* <video  src={notFound} autoplay="true" muted="true" loop="true"></video> */}
                             <h1>Game not found!</h1>
+                            <video  src={notFound} autoplay="true" muted="true" loop="true"></video>
                         </div>
                     ) : 
                 currentGames?.map(game =>{

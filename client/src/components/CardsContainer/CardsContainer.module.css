@@ -5,9 +5,20 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     color: white;    
+}
+
+.filters{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: space-around;
+}
+
+.filter{
+    margin-inline: 30px;
 }
 
 

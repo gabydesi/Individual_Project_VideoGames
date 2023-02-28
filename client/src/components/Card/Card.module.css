@@ -9,9 +9,11 @@
     margin-left: 10px;
     position: relative;
     border-radius: 15px;
-    text-decoration: none;
-    
+    text-decoration:none;
+    margin: 20px;
 }
+
+
 
 .card_img{
     align-items: center;

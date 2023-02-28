@@ -57,3 +57,8 @@
     width: 330px;
     max-width: 50%;
   }
+
+  .error_message{
+    color: red;
+   
+  }
