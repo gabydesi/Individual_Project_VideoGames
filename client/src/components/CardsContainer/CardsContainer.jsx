@@ -6,6 +6,7 @@ import {getVideogames, filterByGenres, getGameGenres, filterByOrigin, alphabetic
 import { useEffect, useState } from "react"
 
 
+
 const CardsContainer = () => {
 
     const dispatch = useDispatch()
@@ -68,7 +69,7 @@ const handlerOrderByRating = (event) => {
 
             <div>
                 <h6>Find videogames by genres: </h6>
-                <select className={style.input_containers} onChange={(event)=> handlerFilterByGenre(event)}>
+                <select onChange={(event)=> handlerFilterByGenre(event)}>
                     <option value="All">All genres</option>
                     {genres?.map((genr)=> (
                         <option value={genr.name} key={genr.id}>{genr.name}</option>
@@ -78,7 +79,7 @@ const handlerOrderByRating = (event) => {
 
             <div>
                 <h6>Find videogames by origin: </h6>
-                <select className={style.input_containers} onChange={(event)=>handlerFilterByOrigin(event)}>
+                <select onChange={(event)=>handlerFilterByOrigin(event)}>
                     <option value="All">All sources</option>
                     <option value="createdDB">DB</option>
                     <option value="created">API</option>
@@ -87,7 +88,7 @@ const handlerOrderByRating = (event) => {
 
             <div>
                 <h6>Order videogames alphabetically: </h6>
-                <select className={style.input_containers} onChange={(event) => handlerOrderAlphabetically(event)}>
+                <select onChange={(event) => handlerOrderAlphabetically(event)}>
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
                 </select>
@@ -95,7 +96,7 @@ const handlerOrderByRating = (event) => {
 
             <div>
                 <h6>Order videogames by rating: </h6>
-                <select className={style.input_containers} onChange={(event) => handlerOrderByRating(event)}>
+                <select onChange={(event) => handlerOrderByRating(event)}>
                     <option value="asc">1 - 5</option>
                     <option value="desc">5 - 1</option>
                 </select>
@@ -105,8 +106,9 @@ const handlerOrderByRating = (event) => {
                 {
                     
                     currentGames === "404" ? (
-                        <div>
-                            <h1>Videogame not found!</h1>
+                        <div className={style.notFound}>
+                            {/* <video  src={notFound} autoplay="true" muted="true" loop="true"></video> */}
+                            <h1>Game not found!</h1>
                         </div>
                     ) : 
                 currentGames?.map(game =>{

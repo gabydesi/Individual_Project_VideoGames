@@ -7,15 +7,10 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    color: white;
-    
+    color: white;    
 }
 
 
-
-.input_containers{
-    border-radius: 0.1rem;
-    border: 0.0625rem solid #e830ce; /* 1px */
-    box-shadow: 6px 7px 8px -6px rgba(8, 8, 8, 0.7);
-
+.notFound{
+    
 }

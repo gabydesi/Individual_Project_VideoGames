@@ -2,7 +2,7 @@ import style from "./Card.module.css"
 import { Link } from 'react-router-dom'
 import { useDispatch } from "react-redux"
 import { deleteVideogame, getVideogames } from "../../redux/actions"
-import trashCan from "../images/trashCan.png"
+
 
 
 

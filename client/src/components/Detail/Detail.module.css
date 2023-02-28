@@ -17,14 +17,7 @@
     border-radius: 25px;
   }
 
-  .desc_detail{
-    margin: auto;
-    color: white;
-    justify-content: center;
-    text-align: justify;
-    position: relative;
 
-  }
 
   .button{
     text-align: center;
@@ -58,9 +51,10 @@
   }
 
   .logo {
-    height: 300px;
-    width: 330px;
+    height: 100px;
+    width: 130px;
     max-width: 50%;
+    margin: 30px 10px;
   }
 
 

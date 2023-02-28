@@ -42,7 +42,7 @@ const Detail = () => {
             <h4>Platforms where you can play this game:</h4>
             <p>{detail.platforms.join(", ")}</p>
             <h4>About this game: </h4>
-            <p className={style.desc_detail} >{detail.description}</p>
+            <p>{detail.description}</p>
             </div>
 
             <div>
@@ -51,7 +51,9 @@ const Detail = () => {
             <Link className={style.button} to="/home">Back Home</Link>
             </div>
 
-            
+            <div>
+                <img className={style.logo} src={logotwo} alt=""/>
+            </div>
 
             
             
