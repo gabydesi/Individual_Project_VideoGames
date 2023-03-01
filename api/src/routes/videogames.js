@@ -3,7 +3,6 @@ const {
   getVideogames,
   getVideogameById,
   createVideogame,
-  modifyVideogame,
   deleteVideogame
 } = require("../handlers/videogameHandlers")
 
@@ -14,8 +13,6 @@ videogamesRouter.get('/', getVideogames)
 videogamesRouter.get('/:id', getVideogameById)
 
 videogamesRouter.post('/', createVideogame)
-
-videogamesRouter.put('/', modifyVideogame)
 
 videogamesRouter.delete('/:id', deleteVideogame)
 

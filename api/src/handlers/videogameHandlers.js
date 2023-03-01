@@ -58,13 +58,9 @@ const deleteVideogame = async (req, res) => {
 };
 
 
-const modifyVideogame = (req, res) => {
-  res.status(200).send("NIY: modificar videojuego")
-}
 module.exports = {
     getVideogames,
     getVideogameById,
     createVideogame,
-    modifyVideogame,
     deleteVideogame
 }
