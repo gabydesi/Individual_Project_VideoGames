@@ -41,11 +41,13 @@ const [page, setPage] = useState(1);
 const handlerFilterByGenre = (event) => {
     event.preventDefault()
     dispatch(filterByGenres(event.target.value))
+    setPage(1)
 }
 
 //filtrar por origen
 const handlerFilterByOrigin = (event) => {
     dispatch(filterByOrigin(event.target.value))
+    setPage(1)
 }
 
 //ordenar alfabeticamente

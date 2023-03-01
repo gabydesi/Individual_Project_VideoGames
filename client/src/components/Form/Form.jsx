@@ -40,13 +40,23 @@ const Form = () => {
 
     //opción de elección de géneros
     const handlerSelect = (event) => {
-        //if (!form.genres.includes(event.target.value)) {
+        if (!form.genres.includes(event.target.value)) {
           setForm({
             ...form,
             genres: [...form.genres, event.target.value],
           });
-        //}
+        }
       };
+
+    //borrar generos seleccionados
+    const deleteGenresHandler = (event) => {
+        event.preventDefault()
+        form.genres.map(element => console.log(element))
+        setForm({
+            ...form,
+            genres: form.genres.filter((element) => event.target.id !== element)
+        })
+    }
 
     //opción de elección de plataformas
     const handlerCheck = (event) => {
@@ -62,6 +72,9 @@ const Form = () => {
         event.preventDefault()
         axios.post('http://localhost:3001/videogames/', form)
         .then(alert("Videogame created successfully, return home to see it!"))
+        setTimeout(()=>{
+            window.location.reload();
+          }, 3000)
         }
 
 
@@ -79,7 +92,7 @@ const Form = () => {
                     <div>
                     <label >Add a name: </label>
                     <input  className={style.form_input} type="text" name="name" value={form.name} onChange={changeHandler} 
-                    minlength="5" maxlength="20" required/>
+                    minLength="5" maxLength="20" required/>
                     {errors.name ? <span className={style.error_message}>{errors.name}</span> : null}
                     </div>
 
@@ -105,7 +118,7 @@ const Form = () => {
 
                     <div>
                     <label>Made a little description about the game: </label>
-                    <input type="text" name="description" minlength="10" maxlength="200" value={form.description} onChange={changeHandler} required/>
+                    <input type="text" name="description" minLength="10" maxLength="200" value={form.description} onChange={changeHandler} required/>
                     {errors.description ? <span className={style.error_message}>{errors.description}</span> : null}
                     </div>
 
@@ -123,20 +136,37 @@ const Form = () => {
                     <div>
                     <label>The genres types are: </label>
                     <select name="genres" onChange={handlerSelect} id="" value={form.genres.join("")}>
-                        {gameGenres.map((genr)=>{
+                        {/* {gameGenres.map((genr)=>{
                             return(
-                                
-                                <option key={genr.id} value={genr.name}>{genr.name}</option>
+                                    <option key={genr.id} value={genr.name}>{genr.name}</option>  
                             )
-                        })}
+                        })} */}
+                        <option value="Empty">Choose a genre</option>
+                        {gameGenres.map((genre)=>(
+                            <option key={genre.id} value={genre.name}>{genre.name}</option>
+                        ))}
                     </select>
+                    
+                    <div>
+                        <span>Genres selected: </span>
+                    </div>
+
+                    <div>
+                        {form.genres.map((element)=>(
+                            <div>
+                                <span>{element}</span>
+                                <button onClick={deleteGenresHandler} id={element}>x</button>
+                            </div>
+                        ))}
+                    </div>
+
                     {errors.genres ? <span className={style.error_message}>{errors.genres}</span> : null}
                     </div>
 
                     <div>
                     <button 
                     type="submit"
-                    disabled={!form.name || !form.released || !form.rating || !form.description || !form.platforms || !form.genres}
+                    disabled={!form.name || !form.released || !form.rating || !form.description || form.platforms.length === 0 || form.genres.length === 0}
                     
                     >Create</button>
                     </div>
