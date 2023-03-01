@@ -26,6 +26,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 detail: {},
+    
       }
         case GET_GAME_GENRES:
             return{
@@ -79,14 +80,14 @@ const rootReducer = (state = initialState, action) => {
         const sortedRating = action.payload === 'asc' ?
         [...state.allgames].sort(function (a, b) {
             if(a.rating === null) { return 0 }
-            if (a.rating < b.rating) { return 1 }
-            if (b.rating < a.rating) { return -1 }
+            if (a.rating < b.rating) { return -1 }
+            if (b.rating < a.rating) { return 1 }
             return 0;
         }) :
         [...state.allgames].sort(function (a, b) {
             if(a.rating === null) { return 0 }
-            if (a.rating < b.rating) { return -1; }
-            if (b.rating < a.rating) { return 1; }
+            if (a.rating < b.rating) { return 1; }
+            if (b.rating < a.rating) { return -1; }
             return 0;
         })
             return{

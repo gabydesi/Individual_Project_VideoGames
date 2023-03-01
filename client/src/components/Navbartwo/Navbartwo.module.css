@@ -20,6 +20,7 @@
   .button{
     text-align: center;
     user-select: none;
+    transition: .5s;
     margin: 15px 2px;
     font-size: 10px;
     width: 55px;

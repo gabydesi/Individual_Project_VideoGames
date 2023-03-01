@@ -1,39 +1,36 @@
 const stringRegExp = /^[a-zA-Z0-9 ]+$/;
 const numberRegExp = /^([1-5])$/;
 
-
-
-
 const validation = (form) => {
     let errors = {};
 
   if (!form.name) {
-    errors.name = '* Name is required';
+    errors.name = '*Name is required';
   } else if (!stringRegExp.test(form.name)) {
-    errors.name = '* Name is invalid';
+    errors.name = '*Name is invalid';
   }
 
   if(!form.released) {
-    errors.released = '* Please add the released date'
+    errors.released = '*Please add the released date'
   }
 
   if(!form.rating) {
-    errors.rating = '* Please rate the videogame'
+    errors.rating = '*Please rate the videogame'
   }else if(!numberRegExp.test(form.rating)){
     errors.rating = 'Rating invalid';
   }
 
 
   if(!form.description){
-    errors.description = '* The description must contain at least 10 characters'
+    errors.description = '*The description must contain at least 10 characters'
   }
 
   if(!form.platforms) {
-    errors.rating = '* Please choose at least one platform'
+    errors.rating = '*Please choose at least one platform'
   }
 
   if(!form.genres) {
-    errors.rating = '* Please choose at least one genre for this videogame'
+    errors.rating = '*Please choose at least one genre for this videogame'
   }
 
   return errors

@@ -11,16 +11,16 @@
     border-radius: 15px;
     text-decoration:none;
     margin: 20px;
+    transition: .5s;
 }
-
 
 
 .card_img{
     align-items: center;
     text-decoration: none;
-    color: white;
-    
+    color: white;    
 }
+
 
 .card_img img{
     border-radius: 25px;
