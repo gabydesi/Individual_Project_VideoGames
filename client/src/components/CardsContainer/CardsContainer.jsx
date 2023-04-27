@@ -23,7 +23,7 @@ const [page, setPage] = useState(1);
   const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame);
  
 
-  const [order, setOrder] = useState([]);
+  const [, setOrder] = useState([]);
   
  
   const pagination = (pageNumber) => {
