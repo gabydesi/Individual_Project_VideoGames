@@ -255,5 +255,4 @@ Ten en cuenta que en esta instancia no es obligatorio el desarrollo de testing p
 <div align="center">
 <img src="./videogame.png" alt="" />
 </div>
-#   I n d i v i d u a l _ P r o j e c t _ V i d e o G a m e s  
- 
+#
