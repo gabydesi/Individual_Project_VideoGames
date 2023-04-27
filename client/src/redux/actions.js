@@ -9,12 +9,13 @@ export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN"
 export const ALPHABETICAL_ORDER = "ALPHABETICAL_ORDER"
 export const RATING_ORDER = "RATING_ORDER"
 export const RESET = "RESET"
+export const FAV_GAMES = "FAV_GAMES"
 
 
 export function getVideogames(){
     return async function(dispatch){
         try {
-            const gamesData = await axios.get("http://localhost:3001/videogames")
+            const gamesData = await axios.get("/videogames")
             dispatch({
                 type: GET_VIDEOGAMES,
                 payload: gamesData.data
@@ -27,7 +28,7 @@ export function getVideogames(){
 
 export function getGameDetail(id){
     return async function(dispatch){
-        await axios.get(`http://localhost:3001/videogames/${id}`).then((res) => 
+        await axios.get(`/videogames/${id}`).then((res) => 
         dispatch({
             type:GET_GAME_DETAIL,
             payload: res.data
@@ -38,7 +39,7 @@ export function getGameDetail(id){
 export function searchGame(name){
     return async(dispatch)=>{
         try {
-            let vgName = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            let vgName = await axios.get(`/videogames?name=${name}`)
             if(!vgName) throw Error
             return dispatch({
                 type: SEARCH_GAME,
@@ -55,7 +56,7 @@ export function searchGame(name){
 
 export function getGameGenres(){
     return function(dispatch){
-        axios.get("http://localhost:3001/genres").then((res) =>
+        axios.get("/genres").then((res) =>
         dispatch({
             type:GET_GAME_GENRES,
             payload: res.data
@@ -76,7 +77,7 @@ export function resetAll () {
   export function deleteVideogame(id){
     return async function(){
         try {
-            const gamesData = await axios.delete(`http://localhost:3001/videogames/${id}`)
+            const gamesData = await axios.delete(`/videogames/${id}`)
             alert(gamesData.data.message)
            
         } catch (error) {
@@ -84,6 +85,20 @@ export function resetAll () {
         }
     }
   }
+
+  export function favoriteVideogame(id){
+    return async function(dispatch){
+        const gamesData = await axios.get(`/videogames/${id}`)
+        const data = gamesData.data
+
+        return dispatch({
+            type: FAV_GAMES,
+            payload: data
+        })
+    }
+  }
+
+
 
 //filtrado y ordenamiento
 
@@ -118,6 +133,8 @@ export function ratingOrder(payload){
         payload
     }
 }
+
+
 
 
 

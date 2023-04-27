@@ -5,6 +5,7 @@ import axios from "axios";
 import validation from "./validation";
 import style from "./Form.module.css"
 import Navbartwo from "../Navbartwo/Navbartwo";
+import { useHistory } from "react-router-dom";
 
 const Form = () => {
 
@@ -29,6 +30,8 @@ const Form = () => {
     })
 
     const [errors, setErrors] = useState({})
+
+    let historyObject = useHistory()
 
     //añadir datos en el input
     const changeHandler = (event) => {
@@ -61,20 +64,30 @@ const Form = () => {
     //opción de elección de plataformas
     const handlerCheck = (event) => {
         const arr = form[event.target.name];
-        setForm({
-            ...form,
-            platforms: arr.concat(event.target.value)
-        })
+        if(event.target.checked){
+            setForm({
+                ...form,
+                platforms: arr.concat(event.target.value)
+            })
+        }else{
+            let filterPlatforms = form.platforms.filter((element) => element !== event.target.value)
+            setForm({
+                ...form,
+                platforms: filterPlatforms
+            })
+        }
+        
     }
+
+
 
     //cargar datos en la DB
     const handlerSubmit = (event) => {
         event.preventDefault()
         axios.post('http://localhost:3001/videogames/', form)
-        .then(alert("Videogame created successfully, return home to see it!"))
-        setTimeout(()=>{
-            window.location.reload();
-          }, 3000)
+        .then(alert("Videogame created successfully!"))
+        historyObject.push("/home")
+        window.location.reload();
         }
 
 
@@ -136,11 +149,6 @@ const Form = () => {
                     <div>
                     <label>The genres types are: </label>
                     <select name="genres" onChange={handlerSelect} id="" value={form.genres.join("")}>
-                        {/* {gameGenres.map((genr)=>{
-                            return(
-                                    <option key={genr.id} value={genr.name}>{genr.name}</option>  
-                            )
-                        })} */}
                         <option value="Empty">Choose a genre</option>
                         {gameGenres.map((genre)=>(
                             <option key={genre.id} value={genre.name}>{genre.name}</option>

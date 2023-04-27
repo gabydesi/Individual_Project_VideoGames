@@ -62,6 +62,7 @@ const handlerOrderAlphabetically = (event) => {
 const handlerOrderByRating = (event) => {
     event.preventDefault()
     dispatch(ratingOrder(event.target.value))
+    setPage(1)
 }
 
 
@@ -120,11 +121,11 @@ const handlerOrderByRating = (event) => {
                     ) : 
                 currentGames?.map(game =>{
                 return <Card
-                key={game.id}
-                image={game.image}
-                name={game.name}
-                genres={game.genres}
-                id={game.id}
+                key={game?.id}
+                image={game?.image}
+                name={game?.name}
+                genres={game?.genres}
+                id={game?.id}
                 />
             })
           

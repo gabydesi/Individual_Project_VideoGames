@@ -10,12 +10,13 @@ const Navbar = () => {
             <Link to="/">
                 <img className={style.logo} src={logotwo} alt=""/>
             </Link>
-
-            <Link className={style.button} to="/home">Home</Link>
             
-            <Link className={style.button} to="/form">Create videogame</Link>
+            <Link className={style.button} to="/form">Create a new videogame</Link>
 
+
+            <div className={style.mainContainer}>
             <Searchbar/>
+            </div>
         </div>
     )
 }

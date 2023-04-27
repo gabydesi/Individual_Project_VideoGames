@@ -27,9 +27,9 @@
   .crumb:hover, .crumb__active {
     text-align: center;
     user-select: none;
-    margin: 20px 5px;
+    margin: 15px 2px;
     font-size: 14px;
-    width: 32px;
+    width: 30px;
     display: block;
     padding: 0.5rem .3rem;
     text-decoration: none;
@@ -38,7 +38,7 @@
     background-color: rgb(253, 255, 253);
     color: #131213;
     border-color: #e830ce;
-    transform: scale(1.3,1.3);
+    transform: scale(1.2,1.2);
   }
   
   .nav{
@@ -66,9 +66,9 @@
   .arrow:hover, .arrow__active {
     text-align: center;
     user-select: none;
-    margin: 20px 5px;
+    margin: 15px 2px;
     font-size: 14px;
-    width: 32px;
+    width: 30px;
     display: block;
     padding: 0.5rem .3rem;
     text-decoration: none;
@@ -77,5 +77,5 @@
     background-color: rgb(253, 255, 253);
     color: #131213;
     border-color: #111111;
-    transform: scale(1.3,1.3);
+    transform: scale(1.2,1.2);
   }
