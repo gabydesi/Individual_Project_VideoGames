@@ -58,9 +58,12 @@ const deleteVideogame = async (req, res) => {
 };
 
 
+
+
 module.exports = {
     getVideogames,
     getVideogameById,
     createVideogame,
-    deleteVideogame
+    deleteVideogame,
+    
 }
