@@ -84,7 +84,7 @@ const Form = () => {
     //cargar datos en la DB
     const handlerSubmit = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:3001/videogames/', form)
+        axios.post('/videogames', form)
         .then(alert("Videogame created successfully!"))
         historyObject.push("/home")
         window.location.reload();
