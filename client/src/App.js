@@ -5,7 +5,8 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
 import axios from 'axios';
-axios.defaults.baseURL = "http://localhost:3001/"
+//axios.defaults.baseURL = "http://localhost:3001/"
+axios.defaults.baseURL = "https://individualprojectvideogames-production.up.railway.app/"
 
 function App() {
   return (
