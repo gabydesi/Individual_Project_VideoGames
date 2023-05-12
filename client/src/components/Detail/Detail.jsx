@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getGameDetail} from "../../redux/actions"
 import style from './Detail.module.css'
-
 import Navbartwo from "../Navbartwo/Navbartwo"
+import Loading from "../images/Loading.gif"
 
 
 const Detail = () => {
@@ -24,7 +24,8 @@ const Detail = () => {
     if(!detail.id) {
         return(
             <div>
-                <h1>Loading...</h1>
+                <img className={style.loading} src={Loading} alt="Loading"/> 
+                <h1 className={style.loadintext}>Loading...</h1>
             </div>
         )
     }
